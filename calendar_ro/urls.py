@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sistema/ro-calendar/', include('login.urls'), name='ventana_login')
+    path('sistema/ro-calendar/', include('login.urls'), name='ventana_login'),
+    path('sistema/ro-calendar/', include('calendario.urls'), name='nuevo_calendario')
 ]
