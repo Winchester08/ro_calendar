@@ -1,0 +1,101 @@
+{% load static %} {% include '../plantillas/menu_bar.html'%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{sistema}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/interfazu.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/modal.css' %}" />
+  </head>
+  {% block header%} {% endblock %}
+
+  <body>
+    {% block sidebar %} {% endblock %}
+
+    <div class="calendario-container">
+      <div class="deco-circle deco-1"></div>
+      <div class="deco-circle deco-2"></div>
+
+      <div class="header">
+        <button class="nav-btn" id="prevBtn" aria-label="Mes anterior">
+          ‹
+        </button>
+        <div class="mes-año">
+          <div class="mes" id="mesNombre">ENERO</div>
+          <div class="año" id="añoNumero">2024</div>
+        </div>
+        <button class="nav-btn" id="nextBtn" aria-label="Mes siguiente">
+          ›
+        </button>
+      </div>
+
+      <div class="dias-semana">
+        <div class="dia-semana">Dom</div>
+        <div class="dia-semana">Lun</div>
+        <div class="dia-semana">Mar</div>
+        <div class="dia-semana">Mié</div>
+        <div class="dia-semana">Jue</div>
+        <div class="dia-semana">Vie</div>
+        <div class="dia-semana">Sáb</div>
+      </div>
+
+      <div class="dias-grid" id="diasGrid"></div>
+      <button id="abrirm"></button>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-contenido">
+        <button class="cerrar" id="cierra">&times;</button>
+        <h2>Nuevo Evento</h2>
+
+        <fieldset>
+          <form action="" method="post">
+            <label for="">Dia:</label>
+            <input type="text" name="dia" class="form-control" id="dia_e" />
+            <label for="">Descripcion:</label>
+            <textarea
+              name="desc"
+              id=""
+              cols="20"
+              rows="5"
+              class="form-control"
+            ></textarea>
+            &nbsp;
+            <p>
+              <label for="">Hora:</label>
+              <input type="time" name="hora" />
+            </p>
+
+            <p>
+              <label for="">Estatus:</label>
+              <select name="" id="">
+                <option value="">[Selecciona un Estatus]</option>
+                <option value="">Completa</option>
+                <option value="">PENDIENTE</option>
+              </select>
+            </p>
+
+            <p>
+              <button class="btn btn-success">Guardar Evento</button>
+
+              <button class="btn btn-warning">Cancelar Evento</button>
+            </p>
+          </form>
+        </fieldset>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script src="{% static 'js/calendar.js' %}"></script>
+
+{% block footer %} {% endblock %}
