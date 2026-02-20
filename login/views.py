@@ -1,5 +1,6 @@
 from django.shortcuts import HttpResponse, render
 from .models import usuarios
+from django.db import connection
 
 
 def login(request):
@@ -42,7 +43,17 @@ def interfaz_admin(request):
 def interfaz_users(request):
     titulo = 'Interfaz Usuarios'
     sistema = 'Calendario de Eventos'
+
+    consulta_eventos = """ Select * from calendario_evento where estado ='en proceso' order 
+    by fecha desc """
+    with connection.cursor() as cursor:
+        cursor.execute(consulta_eventos)
+        columns = [col[0] for col in cursor.description]
+        resultado = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    #aqui hay que hacer la consulta para que nos muestre el detalle de eventos
     return render (request, 'calendario/interfazu.html', {
         'ventana' : titulo,
-        'sistema': sistema
+        'sistema': sistema,
+        'datos': resultado
     })

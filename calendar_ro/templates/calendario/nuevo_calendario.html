@@ -58,7 +58,8 @@
         <h2>Nuevo Evento</h2>
 
         <fieldset>
-          <form action="" method="post">
+          <form action="{% url 'guarda' %}" method="post">
+            {% csrf_token %}
             <label for="">Dia:</label>
             <input type="text" name="dia" class="form-control" id="dia_e" />
             <label for="">Descripcion:</label>
@@ -72,22 +73,22 @@
             &nbsp;
             <p>
               <label for="">Hora:</label>
-              <input type="time" name="hora" />
+              <input type="time" name="hora" class="form-control" />
             </p>
 
             <p>
               <label for="">Estatus:</label>
-              <select name="" id="">
-                <option value="">[Selecciona un Estatus]</option>
-                <option value="">Completa</option>
-                <option value="">PENDIENTE</option>
+              <select name="estatus" id="" class="form-control">
+                <option value="0">[Selecciona un Estatus]</option>
+                <option value="completada">Completa</option>
+                <option value="en proceso">Pendiente</option>
               </select>
             </p>
 
             <p>
               <button class="btn btn-success">Guardar Evento</button>
 
-              <button class="btn btn-warning">Cancelar Evento</button>
+              
             </p>
           </form>
         </fieldset>
